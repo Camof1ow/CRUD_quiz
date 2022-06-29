@@ -1,0 +1,76 @@
+CREATE 
+
+Mongo db에 president이름의 collection에 
+역대 대통령들을 db로 생성
+
+from flask import Flask, render_template, request, jsonify, redirect
+from pymongo import MongoClient
+
+client = MongoClient('')
+app = Flask(__name__)
+
+db = client.dbsparta
+
+doc = ([
+    {'name': '이승만'},
+    {'name': '윤보선'},
+    {'name': '박정희'},
+    {'name': '최규하'},
+    {'name': '전두환'},
+    {'name': '노태우'},
+    {'name': '김영삼'},
+    {'name': '김대중'},
+    {'name': '노무현'},
+    {'name': '이명박'},
+    {'name': '박근혜'},
+    {'name': '문재인'}
+])
+
+db.president.insert_many(doc)
+
+
+
+READ
+
+
+
+all_users = list(db.president.find({},{'_id':False}))
+for name in all_users:
+    strname = name['name']
+    print(strname)
+
+
+
+UPDATE
+
+#Q3 저장한 데이터를 update로 취임순서 집어넣기
+all_users = list(db.president.find({},{'_id':False}))
+place = 1
+for name in all_users:
+    strname = name['name']
+    place = place + 1
+    db.president.update_one({'name':strname},{'$set':{'place':place}})
+
+    print(name)
+
+-------------------------
+
+#Q1 역대대통령 이름을 db로 저장
+
+  = ([
+    {}
+])
+db.president.insert_many(doc)
+
+#Q2 저장한 데이터를
+        #이승만
+        #윤보선
+        #박정희
+
+#순으로 데이터 출력
+
+  =  (db.president.find({},{'_id':False}))
+for a in a:
+   print()
+
+#Q3 저장한 데이터를 update로 취임순서 집어넣기
