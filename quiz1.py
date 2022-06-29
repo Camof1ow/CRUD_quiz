@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect
 from pymongo import MongoClient
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.7nr2yln.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient()
 app = Flask(__name__)
 
 db = client.dbsparta
